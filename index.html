@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Expense Form</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- PDF Libraries - UPDATED CDN LINKS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>💰 Business Expense Form (INR)</h1>
+        
+        <!-- Employee Details Section -->
+        <div class="employee-details">
+            <div class="input-group">
+                <label>Name:</label>
+                <input type="text" id="empName" placeholder="Enter your full name">
+            </div>
+            <div class="input-group">
+                <label>Position (Optional):</label>
+                <input type="text" id="empPosition" placeholder="Your position">
+            </div>
+            <div class="input-group">
+                <label>City:</label>
+                <input type="text" id="empCity" placeholder="Current city">
+            </div>
+            <div class="input-group">
+                <label>Mobile:</label>
+                <input type="text" id="empMobile" placeholder="Phone number">
+            </div>
+        </div>
+        
+        <!-- Expense Table -->
+        <div class="table-container">
+            <table class="expense-table" id="expenseTable">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Mode of Transport</th>
+                        <th>Description</th>
+                        <th>Travel (₹)</th>
+                        <th>Food (₹)</th>
+                        <th>Hotel (₹)</th>
+                        <th>Buy (₹)</th>
+                        <th>Total (₹)</th>
+                        <th>Visit/Purpose</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="expenseBody">
+                    <!-- Rows will be added here dynamically -->
+                </tbody>
+            </table>
+        </div>
+        
+        <button class="add-row-btn" onclick="addNewRow()">+ Add New Row</button>
+        
+        <!-- Image Upload Section -->
+        <div class="upload-section">
+            <h3>📎 Upload Receipt Images</h3>
+            <input type="file" id="receiptUpload" accept="image/*" multiple onchange="previewImages()">
+            <div id="imagePreview" class="image-preview"></div>
+        </div>
+        
+        <!-- Calculation Section -->
+        <div class="calculation-section">
+            <div class="summary">
+                <h3>Expense Summary</h3>
+                <div class="summary-item">
+                    <span>Travel Total:</span>
+                    <span>₹<span id="travelTotal">0</span></span>
+                </div>
+                <div class="summary-item">
+                    <span>Food Total:</span>
+                    <span>₹<span id="foodTotal">0</span></span>
+                </div>
+                <div class="summary-item">
+                    <span>Hotel Total:</span>
+                    <span>₹<span id="hotelTotal">0</span></span>
+                </div>
+                <div class="summary-item">
+                    <span>Buy Total:</span>
+                    <span>₹<span id="buyTotal">0</span></span>
+                </div>
+                <div class="summary-item total">
+                    <span>Subtotal:</span>
+                    <span>₹<span id="subtotal">0</span></span>
+                </div>
+            </div>
+            <div class="final-calculation">
+                <h3>Final Calculation</h3>
+                <div class="input-group">
+                    <label>Advance Received:</label>
+                    <input type="number" id="advanceAmount" value="0" min="0">
+                </div>
+                <div class="summary-item final-total">
+                    <span>Final Total:</span>
+                    <span>₹<span id="finalTotal">0</span></span>
+                </div>
+            </div>
+        </div>
+        
+        <button class="download-btn" onclick="downloadPDF()">📥 Download Expense Report as PDF</button>
+        
+        <!-- Test Button -->
+        <button style="background: #ff9800; color: white; padding: 10px; margin-top: 10px; border: none; border-radius: 5px; cursor: pointer;" onclick="testPDF()">
+            🧪 Test PDF Library
+        </button>
+        
+        <button style="background: #2196f3; color: white; padding: 10px; margin-top: 10px; border: none; border-radius: 5px; cursor: pointer;" onclick="resetAllData()">
+            🔄 Reset All Data
+        </button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
